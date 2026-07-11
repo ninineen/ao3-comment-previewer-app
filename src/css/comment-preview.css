@@ -1,0 +1,320 @@
+/* ── page-level additional tokens ────────────────────── */
+
+:root {
+  --color-input-bg:          #111;
+  --color-input-text:        #d4d4d4;
+  --color-input-placeholder: #555;
+  --color-pane-label-bg:     #1a1a1a;
+  --color-pane-label-text:   #888;
+  --color-pane-divider:      #333;
+  --color-warning-text:      #e8a020;
+
+  --color-preview-label-bg:     light-dark(#f5f0e8, #222);
+  --color-preview-label-border: light-dark(#d9cfc0, #333);
+  --color-preview-label-text:   light-dark(#7a6a55, #888);
+  --color-preview-pane-bg:      light-dark(#fff, #1a1a1a);
+
+  --color-comment-border:     light-dark(#ddd, #444);
+  --color-comment-byline-bg:  light-dark(#ddd, #333);
+  --color-comment-byline-text:light-dark(#2a2a2a, #d4d4d4);
+  --color-comment-body-text:  light-dark(#2a2a2a, #d4d4d4);
+  --color-comment-action:     light-dark(#2a547c, #7aaddb);
+
+  --color-badge-bg:   #5a3a00;
+  --color-badge-text: #f5c842;
+}
+
+/* ── layout ──────────────────────────────────────────── */
+
+body {
+  block-size: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#panes {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-block-size: 0;
+}
+
+/* ── input pane ──────────────────────────────────────── */
+
+#input-pane {
+  display: flex;
+  flex-direction: column;
+  border-inline-end: 2px solid var(--color-pane-divider);
+}
+
+.pane-label-actions {
+  display: flex;
+  gap: 4px;
+}
+
+#input-label {
+  flex-shrink: 0;
+  background: var(--color-pane-label-bg);
+  color: var(--color-pane-label-text);
+  font: 0.7em/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-block: 5px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pane-clear-btn {
+  background: none;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: var(--color-pane-label-text);
+  font: inherit;
+  padding-block: 1px;
+  padding-inline: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.pane-clear-btn:hover {
+  color: #eee;
+  border-color: #666;
+}
+
+#html-input {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  font: 13px/1.6 var(--font-mono);
+  padding: 12px;
+  tab-size: 2;
+  field-sizing: fixed;
+}
+
+#html-input::placeholder { color: var(--color-input-placeholder); }
+
+#warning-bar {
+  flex-shrink: 0;
+  min-block-size: 22px;
+  padding-block: 3px;
+  padding-inline: 10px;
+  background: var(--color-pane-label-bg);
+  font: 0.7em/1 var(--font-mono);
+  color: var(--color-warning-text);
+  display: none;
+}
+
+/* ── preview pane ────────────────────────────────────── */
+
+#preview-pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-block-size: 0;
+  background: var(--color-preview-pane-bg);
+}
+
+#preview-label {
+  flex-shrink: 0;
+  background: var(--color-preview-label-bg);
+  border-block-end: 1px solid var(--color-preview-label-border);
+  color: var(--color-preview-label-text);
+  font: 0.7em/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-block: 5px;
+  padding-inline: 10px;
+}
+
+#preview-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-block: 1.5em;
+  padding-inline: 2em;
+}
+
+/* ── fake AO3 comment chrome ─────────────────────────── */
+
+#fake-comment {
+  border: 1px solid var(--color-comment-border);
+  position: relative;
+  overflow: visible;
+  text-align: start;
+  max-inline-size: 52em;
+}
+
+#fake-comment h4.byline {
+  background: var(--color-comment-byline-bg);
+  color: var(--color-comment-byline-text);
+  padding-block: 0.25em;
+  padding-inline: 0.5em 0.25em;
+  margin: 0;
+  font-size: 0.875em;
+}
+
+#fake-comment h4.byline .role { font-weight: bold; }
+
+#comment-content {
+  margin: 1em;
+  min-block-size: 3.3em;
+  font-size: 0.875em;
+  color: var(--color-comment-body-text);
+}
+
+#fake-comment .actions {
+  text-align: end;
+  padding-block: 0.25em;
+  padding-inline: 0.643em;
+  font-size: 0.75em;
+}
+
+#fake-comment .actions a {
+  color: var(--color-comment-action);
+  text-decoration: underline;
+  margin-inline-start: 0.5em;
+}
+
+#sanitized-badge {
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  font-size: 0.85em;
+  padding-block: 0.15em;
+  padding-inline: 0.5em;
+  border-radius: 3px;
+  display: none;
+}
+
+/* ── preview pane tabs ───────────────────────────────── */
+
+#preview-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#preview-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.preview-tab {
+  background: none;
+  border: none;
+  border-radius: 3px 3px 0 0;
+  color: var(--color-preview-label-text);
+  font: 0.7em/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.preview-tab:hover { color: light-dark(#333, #ccc); }
+
+.preview-tab.active {
+  color: light-dark(#2a2a2a, #e8e8e8);
+  background: light-dark(rgba(0,0,0,0.06), rgba(255,255,255,0.06));
+}
+
+/* source textarea (hidden by default, shown when Source tab active) */
+
+#source-input {
+  display: none;
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  font: 13px/1.6 var(--font-mono);
+  padding: 12px;
+  tab-size: 2;
+  field-sizing: fixed;
+}
+
+#source-input::placeholder { color: var(--color-input-placeholder); }
+
+/* ── Quill editor ────────────────────────────────────── */
+
+#quill-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  overflow: hidden;
+}
+
+.ql-toolbar.ql-snow {
+  flex-shrink: 0;
+  background: #1c1c1c;
+  border: none !important;
+  border-block-end: 1px solid var(--color-pane-divider) !important;
+  padding: 5px 8px;
+  flex-wrap: wrap;
+}
+
+.ql-container.ql-snow {
+  flex: 1;
+  border: none !important;
+  min-block-size: 0;
+  overflow-y: auto;
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  font-size: 13px;
+}
+
+.ql-editor {
+  min-block-size: 100%;
+  line-height: 1.6;
+  color: var(--color-input-text);
+}
+
+.ql-editor.ql-blank::before {
+  color: var(--color-input-placeholder);
+  font-style: normal;
+}
+
+/* toolbar icon colours */
+.ql-snow .ql-stroke { stroke: #888; }
+.ql-snow .ql-fill   { fill: #888; }
+.ql-snow .ql-picker  { color: #888; }
+
+.ql-snow button:hover .ql-stroke,
+.ql-snow button.ql-active .ql-stroke,
+.ql-snow .ql-picker-label:hover .ql-stroke { stroke: #ccc; }
+
+.ql-snow button:hover .ql-fill,
+.ql-snow button.ql-active .ql-fill { fill: #ccc; }
+
+.ql-snow .ql-picker-label:hover,
+.ql-snow .ql-picker-label.ql-active { color: #ccc; }
+
+.ql-snow .ql-picker-options {
+  background: #2a2a2a;
+  border-color: #444 !important;
+  color: #ccc;
+}
+
+.ql-snow .ql-picker-item:hover { color: #fff; }
+
+/* ── responsive ──────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  #panes {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  #input-pane {
+    border-inline-end: none;
+    border-block-end: 2px solid var(--color-pane-divider);
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "ao3-comment-previewer",
+  "version": "1.0.0",
+  "description": "Standalone live preview + sanitizer for AO3 comment HTML — paste rich text or raw HTML, see it rendered as it would appear as an AO3 comment.",
+  "scripts": {
+    "build": "rm -rf build && mkdir -p build/css build/vendor build/js && cp index.html build/ && cp src/css/*.css build/css/ && cp src/vendor/*.css build/vendor/ && tsc",
+    "start": "npm run build && live-server build",
+    "deploy": "npm run build && gh-pages -d build",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-vtubing:ninineen/ao3-comment-previewer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "gh-pages": "^6.3.0",
+    "jest": "^30.4.2",
+    "live-server": "^1.2.2",
+    "ts-jest": "^29.4.11",
+    "typescript": "^6.0.3"
+  }
+}

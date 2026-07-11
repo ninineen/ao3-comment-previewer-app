@@ -1,0 +1,59 @@
+.toolbar {
+  flex-shrink: 0;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  background: var(--color-toolbar-bg);
+  color: var(--color-toolbar-text);
+  padding-block: 0.5em;
+  padding-inline: 1em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font: 0.8em/1 var(--font-mono);
+}
+
+.toolbar a {
+  color: var(--color-toolbar-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.toolbar a:hover { color: var(--color-toolbar-text); }
+
+.toolbar label { color: var(--color-toolbar-muted); }
+
+.toolbar .sep { color: var(--color-toolbar-sep); }
+
+.toolbar-spacer { margin-inline-start: auto; }
+
+.toolbar-select,
+.toolbar-file {
+  font: inherit;
+  background: var(--color-toolbar-control-bg);
+  color: var(--color-toolbar-text);
+  border: 1px solid var(--color-toolbar-control-border);
+  padding-block: 0.2em;
+  padding-inline: 0.4em;
+  border-radius: 3px;
+  color-scheme: dark; /* toolbar is always dark-bg; keeps option text readable */
+}
+
+.toolbar-select option {
+  background: var(--color-toolbar-control-bg);
+  color: var(--color-toolbar-text);
+}
+
+.toolbar-btn {
+  font: inherit;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding-block: 0.25em;
+  padding-inline: 0.75em;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.toolbar-btn:hover { background: var(--color-accent-hover); }

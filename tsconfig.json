@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "rootDir": "src/ts",
+    "outDir": "build/js",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": false,
+    "moduleDetection": "force"
+  },
+  "include": ["src/ts/**/*.ts"],
+  "exclude": ["src/ts/**/*.test.ts"]
+}
