@@ -1,6 +1,7 @@
 /* ── landing screen ──────────────────────────────────── */
 
 #landing {
+  position: relative;
   flex: 1;
   min-block-size: 0;
   display: flex;
@@ -8,6 +9,12 @@
   justify-content: center;
   padding: 2em 1em;
   overflow-y: auto;
+}
+
+.landing-toggle-corner {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
 }
 
 #landing.hidden {

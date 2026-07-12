@@ -6,9 +6,9 @@
   gap: 0.5rem;
   padding: 0.9rem 1.5rem;
   border-block-start: 1px solid var(--color-border);
-  background: var(--color-toolbar-bg);
+  background: light-dark(#f5f2ee, #141414);
   font-size: 0.85rem;
-  color: var(--color-toolbar-muted, #888);
+  color: light-dark(#767066, #888);
 }
 
 .app-footer .footer-line a {
@@ -38,11 +38,11 @@
 
 .app-footer .footer-source,
 .app-footer .footer-bug {
-  color: var(--color-toolbar-muted, #888);
+  color: light-dark(#767066, #888);
   text-decoration: underline;
 }
 
 .app-footer .footer-source:hover,
 .app-footer .footer-bug:hover {
-  color: #eee;
+  color: light-dark(#2a2a2a, #eee);
 }
