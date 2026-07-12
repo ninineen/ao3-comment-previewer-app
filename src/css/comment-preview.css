@@ -44,6 +44,7 @@ body {
 #input-pane {
   display: flex;
   flex-direction: column;
+  min-block-size: 0;
   border-inline-end: 2px solid var(--color-pane-divider);
 }
 
