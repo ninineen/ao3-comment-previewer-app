@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 1em;
-  font: 0.8em/1 var(--font-mono);
+  font: 0.9em/1 var(--font-mono);
 }
 
 .toolbar a {
