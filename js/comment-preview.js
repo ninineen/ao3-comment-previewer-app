@@ -21,6 +21,7 @@ const copyHtmlBtn = document.getElementById("copy-html-btn");
 const warningBar = document.getElementById("warning-bar");
 const sanitizedBadge = document.getElementById("sanitized-badge");
 const darkToggle = document.getElementById("dark-toggle");
+const landingDarkToggle = document.getElementById("landing-dark-toggle");
 const previewScroll = document.getElementById("preview-scroll");
 const tabs = document.querySelectorAll(".preview-tab");
 const landing = document.getElementById("landing");
@@ -224,15 +225,37 @@ clearBtn.addEventListener("click", () => {
     quill.focus();
 });
 // ── dark mode ──────────────────────────────────────────
+// Defaults to the OS/browser preference (light if unknown). An explicit
+// toggle click pins a preference in localStorage that overrides the
+// system setting from then on; until then, the system preference is
+// tracked live.
 function applyDarkMode(isDark) {
     document.documentElement.classList.toggle("dark", isDark);
-    darkToggle.textContent = isDark ? "☀ Light" : "☾ Dark";
+    document.documentElement.classList.toggle("light", !isDark);
+    const label = isDark ? "☀ Light" : "☾ Dark";
+    darkToggle.textContent = label;
+    landingDarkToggle.textContent = label;
 }
-let isDark = localStorage.getItem(DARK_MODE_KEY) === "true";
+function getStoredDarkPreference() {
+    const raw = localStorage.getItem(DARK_MODE_KEY);
+    return raw === null ? null : raw === "true";
+}
+function getSystemPrefersDark() {
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+}
+let isDark = getStoredDarkPreference() ?? getSystemPrefersDark();
 applyDarkMode(isDark);
-darkToggle.addEventListener("click", () => {
+function toggleDarkMode() {
     isDark = !isDark;
     localStorage.setItem(DARK_MODE_KEY, String(isDark));
     applyDarkMode(isDark);
+}
+darkToggle.addEventListener("click", toggleDarkMode);
+landingDarkToggle.addEventListener("click", toggleDarkMode);
+window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (getStoredDarkPreference() === null) {
+        isDark = e.matches;
+        applyDarkMode(isDark);
+    }
 });
 updateFromEditor();

@@ -1,9 +1,12 @@
 /* ── design tokens ───────────────────────────────────── */
 /* light-dark() reads the first value in light mode, second in dark.
-   Flip by toggling color-scheme on :root via the .dark class.       */
+   :root defaults to following the OS/browser preference (falling
+   back to light if that is unknown). JS pins an explicit .dark or
+   .light class once the user picks a preference, or the system
+   preference is read on load.                                      */
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 
   --color-bg:           light-dark(#fff, #1a1a1a);
   --color-text:         light-dark(#2a2a2a, #d4d4d4);
@@ -25,6 +28,10 @@
 
 :root.dark {
   color-scheme: dark;
+}
+
+:root.light {
+  color-scheme: light;
 }
 
 /* ── reset ───────────────────────────────────────────── */

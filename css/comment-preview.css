@@ -1,24 +1,28 @@
 /* ── page-level additional tokens ────────────────────── */
 
 :root {
-  --color-input-bg:          #111;
-  --color-input-text:        #d4d4d4;
-  --color-input-placeholder: #555;
-  --color-pane-label-bg:     #1a1a1a;
-  --color-pane-label-text:   #888;
-  --color-pane-divider:      #333;
-  --color-warning-text:      #e8a020;
+  --color-input-bg:          light-dark(#fff, #111);
+  --color-input-text:        light-dark(#2a2a2a, #d4d4d4);
+  --color-input-placeholder: light-dark(#999, #555);
+  --color-pane-label-bg:     light-dark(#f0eee9, #1a1a1a);
+  --color-pane-label-text:   light-dark(#767066, #888);
+  --color-pane-divider:      light-dark(#ddd, #333);
+  --color-warning-text:      light-dark(#a8660c, #e8a020);
 
   --color-preview-label-bg:     light-dark(#f5f0e8, #222);
   --color-preview-label-border: light-dark(#d9cfc0, #333);
   --color-preview-label-text:   light-dark(#7a6a55, #888);
-  --color-preview-pane-bg:      light-dark(#fff, #1a1a1a);
 
-  --color-comment-border:     light-dark(#ddd, #444);
-  --color-comment-byline-bg:  light-dark(#ddd, #333);
-  --color-comment-byline-text:light-dark(#2a2a2a, #d4d4d4);
-  --color-comment-body-text:  light-dark(#2a2a2a, #d4d4d4);
-  --color-comment-action:     light-dark(#2a547c, #7aaddb);
+  /* The preview pane mimics AO3's own comment box. Light branch matches
+     AO3 default; dark branch matches AO3's popular Reversi site skin
+     (dark bg, light text, blue links) so dark mode still looks like a
+     real AO3 skin rather than a plain gray inversion. */
+  --color-preview-pane-bg:    light-dark(#fff, #1c1b22);
+  --color-comment-border:     light-dark(#ddd, #454547);
+  --color-comment-byline-bg:  light-dark(#ddd, #2b2a33);
+  --color-comment-byline-text:light-dark(#2a2a2a, #eee);
+  --color-comment-body-text:  light-dark(#2a2a2a, #eee);
+  --color-comment-action:     light-dark(#2a547c, #5998d6);
 
   --color-badge-bg:   #5a3a00;
   --color-badge-text: #f5c842;
@@ -44,6 +48,7 @@ body {
 #input-pane {
   display: flex;
   flex-direction: column;
+  min-block-size: 0;
   border-inline-end: 2px solid var(--color-pane-divider);
 }
 
@@ -68,7 +73,7 @@ body {
 
 .pane-clear-btn {
   background: none;
-  border: 1px solid #444;
+  border: 1px solid var(--color-pane-divider);
   border-radius: 3px;
   color: var(--color-pane-label-text);
   font: inherit;
@@ -81,8 +86,8 @@ body {
 }
 
 .pane-clear-btn:hover {
-  color: #eee;
-  border-color: #666;
+  color: light-dark(#222, #eee);
+  border-color: light-dark(#999, #666);
 }
 
 #html-input {
@@ -189,6 +194,12 @@ body {
 #fake-comment .actions input,
 #fake-comment .actions label {
   box-sizing: content-box;
+  background: light-dark(#eee, #2b2a33);
+  background-image: light-dark(
+    linear-gradient(#fff 2%, #ddd 95%, #bbb 100%),
+    none
+  );
+  border-color: light-dark(#bbb, #78777d);
 }
 
 #sanitized-badge {
@@ -264,7 +275,7 @@ body {
 
 .ql-toolbar.ql-snow {
   flex-shrink: 0;
-  background: #1c1c1c;
+  background: var(--color-pane-label-bg);
   border: none !important;
   border-block-end: 1px solid var(--color-pane-divider) !important;
   padding: 5px 8px;
@@ -293,27 +304,27 @@ body {
 }
 
 /* toolbar icon colours */
-.ql-snow .ql-stroke { stroke: #888; }
-.ql-snow .ql-fill   { fill: #888; }
-.ql-snow .ql-picker  { color: #888; }
+.ql-snow .ql-stroke { stroke: light-dark(#666, #888); }
+.ql-snow .ql-fill   { fill: light-dark(#666, #888); }
+.ql-snow .ql-picker  { color: light-dark(#666, #888); }
 
 .ql-snow button:hover .ql-stroke,
 .ql-snow button.ql-active .ql-stroke,
-.ql-snow .ql-picker-label:hover .ql-stroke { stroke: #ccc; }
+.ql-snow .ql-picker-label:hover .ql-stroke { stroke: light-dark(#222, #ccc); }
 
 .ql-snow button:hover .ql-fill,
-.ql-snow button.ql-active .ql-fill { fill: #ccc; }
+.ql-snow button.ql-active .ql-fill { fill: light-dark(#222, #ccc); }
 
 .ql-snow .ql-picker-label:hover,
-.ql-snow .ql-picker-label.ql-active { color: #ccc; }
+.ql-snow .ql-picker-label.ql-active { color: light-dark(#222, #ccc); }
 
 .ql-snow .ql-picker-options {
-  background: #2a2a2a;
-  border-color: #444 !important;
-  color: #ccc;
+  background: light-dark(#fff, #2a2a2a);
+  border-color: var(--color-pane-divider) !important;
+  color: light-dark(#333, #ccc);
 }
 
-.ql-snow .ql-picker-item:hover { color: #fff; }
+.ql-snow .ql-picker-item:hover { color: light-dark(#000, #fff); }
 
 /* ── responsive ──────────────────────────────────────── */
 
