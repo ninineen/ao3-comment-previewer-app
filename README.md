@@ -1,8 +1,8 @@
-# AO3 Comment Previewer
+# 💬 AO3 Comment Previewer
 
 A browser tool that shows you exactly how a comment will render on AO3 before you post it. Paste rich text or raw HTML in, get a live sanitized preview out, no surprises, no broken tags. All client-side, nothing is ever uploaded anywhere.
 
-## Use it online
+## 👀 Use it online
 
 ### [Launch the AO3 Comment Previewer](https://ninineen.github.io/ao3-comment-previewer-app/)
 
@@ -10,7 +10,7 @@ No installation needed. It runs entirely in your browser, and your comment text 
 
 ---
 
-## Connect with me
+## 💌 Connect with me
 
 **Support my work:** [Buy me a coffee on Ko-fi](https://ko-fi.com/ninineen)
 
@@ -26,15 +26,28 @@ I make AO3 skins, stream on Twitch, and post fandom content across socials. Find
 
 ---
 
-## What it does
+## ✨ What it does
 
-Paste or drop in your comment's HTML (or write it fresh in the rich text editor), and see a sanitized live preview of exactly how AO3 will render it, styled with AO3's own comment chrome. Switch to the Source tab to check or copy the raw HTML. Anything AO3 would strip on its end gets flagged so you know before you post.
+Paste or drop in your comment's HTML (or write it fresh in the rich text editor), and see a sanitized live preview of exactly how AO3 will render it, styled with AO3's own comment chrome. Switch to the Source tab to check or copy the raw HTML. Anything AO3 would strip on its end gets flagged so you know before you post, no more "why did my italics vanish" moments.
 
 Extracted from `disco-elysium-css-formatter` (formerly `uc41-html-formatted-chapters`), where it originally lived alongside an unrelated chapter-formatting tool.
 
 ---
 
-## Usage
+## 🧰 Tech Stack & Tools
+
+<p align="left">
+  <img src="https://img.shields.io/badge/TypeScript-d6e2e9?style=flat-square&logo=typescript&logoColor=4a6fa5" alt="TypeScript">
+  <img src="https://img.shields.io/badge/HTML5-fbc4b6?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-663399?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/Quill-2c3e50?style=flat-square&logo=quill&logoColor=white" alt="Quill">
+  <img src="https://img.shields.io/badge/DOMPurify-e8f0d4?style=flat-square&logoColor=558b2f" alt="DOMPurify">
+  <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white" alt="Jest">
+</p>
+
+---
+
+## 🛠️ Usage
 
 ### Run the web app
 
@@ -64,3 +77,5 @@ npm run deploy
 ## License
 
 ISC.
+
+<sub>💖 Made for AO3 authors who overthink their comment boxes just as much as their fics.</sub>

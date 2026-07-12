@@ -107,3 +107,32 @@
   font-size: 0.8em;
   color: var(--color-toolbar-muted, #888);
 }
+
+.landing-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-block-start: 1.5em;
+}
+
+.landing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  color: var(--color-toolbar-muted, #888);
+  font-size: 0.78rem;
+}
+
+.landing-badge-icon {
+  flex: none;
+  color: inherit;
+}
+
+.landing-badge-warning {
+  border-color: #c9862c;
+  color: #c9862c;
+}
