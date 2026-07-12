@@ -1,4 +1,4 @@
-# AO3 Comment Previewer
+# AO3 Comment Previewer App
 
 A standalone tool for previewing AO3 comment HTML before posting. Paste rich
 text or raw HTML into the editor and see a sanitized live preview of exactly

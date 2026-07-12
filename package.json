@@ -1,7 +1,7 @@
 {
-  "name": "ao3-comment-previewer",
+  "name": "ao3-comment-previewer-app",
   "version": "1.0.0",
-  "description": "Standalone live preview + sanitizer for AO3 comment HTML — paste rich text or raw HTML, see it rendered as it would appear as an AO3 comment.",
+  "description": "Standalone live preview app + sanitizer for AO3 comment HTML — paste rich text or raw HTML, see it rendered as it would appear as an AO3 comment.",
   "scripts": {
     "build": "rm -rf build && mkdir -p build/css build/vendor build/js && cp index.html build/ && cp src/css/*.css build/css/ && cp src/vendor/*.css build/vendor/ && tsc",
     "start": "npm run build && live-server build",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github-vtubing:ninineen/ao3-comment-previewer.git"
+    "url": "git@github-vtubing:ninineen/ao3-comment-previewer-app.git"
   },
   "keywords": [],
   "author": "",
