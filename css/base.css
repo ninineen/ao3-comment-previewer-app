@@ -1,0 +1,42 @@
+/* ── design tokens ───────────────────────────────────── */
+/* light-dark() reads the first value in light mode, second in dark.
+   Flip by toggling color-scheme on :root via the .dark class.       */
+
+:root {
+  color-scheme: light;
+
+  --color-bg:           light-dark(#fff, #1a1a1a);
+  --color-text:         light-dark(#2a2a2a, #d4d4d4);
+  --color-border:       light-dark(#ddd, #444);
+
+  --color-toolbar-bg:   light-dark(#1a1a1a, #111);
+  --color-toolbar-text: #eee;
+  --color-toolbar-muted: light-dark(#aaa, #888);
+  --color-toolbar-sep:  #555;
+  --color-toolbar-control-bg:     #333;
+  --color-toolbar-control-border: #555;
+
+  --color-accent:       #990000;
+  --color-accent-hover: #cc0000;
+
+  --font-ui:   'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+/* ── reset ───────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 100%/1.125 var(--font-ui);
+  margin: 0;
+  padding: 0;
+}
