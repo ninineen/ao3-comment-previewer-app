@@ -1,4 +1,4 @@
-import { stripTrailingBrs, containsEncodedHtmlTags, decodeTagEntities } from "./comment-preview-utils.js";
+import { stripTrailingBrs, containsEncodedHtmlTags, decodeTagEntities, looksLikeHtml } from "./comment-preview-utils.js";
 
 const DARK_MODE_KEY = "ao3preview-dark";
 
@@ -28,6 +28,12 @@ const sanitizedBadge = document.getElementById("sanitized-badge") as HTMLElement
 const darkToggle     = document.getElementById("dark-toggle")     as HTMLButtonElement;
 const previewScroll  = document.getElementById("preview-scroll")  as HTMLElement;
 const tabs           = document.querySelectorAll<HTMLButtonElement>(".preview-tab");
+
+const landing        = document.getElementById("landing")           as HTMLElement;
+const appShell       = document.getElementById("app-shell")         as HTMLElement;
+const landingDropzone = document.getElementById("landing-dropzone")  as HTMLElement;
+const landingFileInput = document.getElementById("landing-file-input") as HTMLInputElement;
+const landingBlankBtn  = document.getElementById("landing-blank-btn")  as HTMLButtonElement;
 
 // ── Quill ──────────────────────────────────────────────
 
@@ -59,6 +65,8 @@ interface SanitizeResult {
 function sanitizeAndCollectStripped(raw: string): SanitizeResult {
   const removedTags  = new Set<string>();
   const removedAttrs = new Set<string>();
+
+  if (!raw) return { clean: "", removedTags, removedAttrs };
 
   DOMPurify.addHook("uponSanitizeElement", (_node, data) => {
     const tag = data.tagName.toLowerCase();
@@ -147,6 +155,80 @@ quill.on("text-change", (_delta, _old, source) => {
 });
 
 sourceInput.addEventListener("input", updateFromSource);
+
+// ── landing screen ──────────────────────────────────────
+
+function enterWorkspace(text?: string): void {
+  landing.classList.add("hidden");
+  appShell.classList.add("active");
+
+  if (text) {
+    if (looksLikeHtml(text)) {
+      sourceInput.value = text;
+      updateFromSource();
+    } else {
+      quill.setText(text);
+      updateFromEditor();
+    }
+  }
+
+  quill.focus();
+}
+
+function readLandingFile(file: File): void {
+  const reader = new FileReader();
+  reader.onload = (e) => enterWorkspace(String(e.target?.result ?? ""));
+  reader.readAsText(file);
+}
+
+landingDropzone.addEventListener("click", () => landingFileInput.click());
+
+landingDropzone.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    landingFileInput.click();
+  }
+});
+
+landingDropzone.addEventListener("paste", (e: ClipboardEvent) => {
+  const text = e.clipboardData?.getData("text");
+  if (!text) return;
+  e.preventDefault();
+  enterWorkspace(text);
+});
+
+landingDropzone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  landingDropzone.classList.add("dragging");
+});
+
+landingDropzone.addEventListener("dragleave", () => {
+  landingDropzone.classList.remove("dragging");
+});
+
+landingDropzone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  landingDropzone.classList.remove("dragging");
+  const file = e.dataTransfer?.files?.[0];
+  if (file) readLandingFile(file);
+});
+
+landingFileInput.addEventListener("change", () => {
+  const file = landingFileInput.files?.[0];
+  if (file) readLandingFile(file);
+  landingFileInput.value = "";
+});
+
+landingBlankBtn.addEventListener("click", () => enterWorkspace());
+
+window.addEventListener("paste", (e: ClipboardEvent) => {
+  if (!landing.classList.contains("hidden") && document.activeElement !== landingDropzone) {
+    const text = e.clipboardData?.getData("text");
+    if (!text) return;
+    e.preventDefault();
+    enterWorkspace(text);
+  }
+});
 
 // ── tab switching ──────────────────────────────────────
 
